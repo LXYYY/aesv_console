@@ -42,3 +42,5 @@ log/*
 *.lnk
 *.exe
 *.lnk
+
+*.jar
