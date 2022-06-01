@@ -1,0 +1,10 @@
+toyota:
+  ip: "192.168.0.50"
+  icon: 'media/icon/toyota.png'
+
+sweeper:
+  ip: "10.8.0.6"
+  icon: 'media/icon/sweeper.jpg'
+
+
+default: "toyota"

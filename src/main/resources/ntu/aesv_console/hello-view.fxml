@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="358.0"
+      prefWidth="708.0" spacing="20.0"
+      xmlns="http://javafx.com/javafx/16"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ntu.aesv_console.StartupController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <MenuBar fx:id="StartupMenuBar">
+     <menus>
+       <Menu mnemonicParsing="false" text="File">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Close" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Edit">
+         <items>
+           <MenuItem mnemonicParsing="false" text="Delete" />
+         </items>
+       </Menu>
+       <Menu mnemonicParsing="false" text="Help">
+         <items>
+           <MenuItem mnemonicParsing="false" text="About" />
+         </items>
+       </Menu>
+     </menus>
+   </MenuBar>
+
+    <Label fx:id="welcomeText" text="AESV Teleop Console">
+      <font>
+         <Font name="Arial Bold" size="24.0" />
+      </font></Label>
+   <HBox prefHeight="326.0" prefWidth="266.0">
+      <children>
+         <VBox prefHeight="200.0" prefWidth="100.0">
+            <children>
+               <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                 <buttons>
+                   <Button fx:id="StreamStartButton" alignment="CENTER" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#onStreamStartButtonClick" text="Start" />
+                     <ProgressIndicator fx:id="StreamStartProgressIndicator" progress="0.0" />
+                     <Label text="Stream" />
+                 </buttons>
+               </ButtonBar>
+               <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                 <buttons>
+                   <Button fx:id="IMUStartButton" mnemonicParsing="false" onAction="#onIMUStartButtonClick" text="Start" />
+                     <ProgressIndicator fx:id="IMUStartProgressIndicator" progress="0.0" />
+                     <Label text="Motion" />
+                 </buttons>
+               </ButtonBar>
+               <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                 <buttons>
+                   <Button fx:id="ControllerStartButton" mnemonicParsing="false" onAction="#onWheelControllerStartButtonClick" text="Start" />
+                     <ProgressIndicator fx:id="ControllerStartProgressIndicator" progress="0.0" />
+                     <Label fx:id="WheelControllerStartButton" text="Controller" />
+                 </buttons>
+               </ButtonBar>
+               <ButtonBar prefHeight="40.0" prefWidth="200.0">
+                 <buttons>
+                   <Button fx:id="StopAllButton" mnemonicParsing="false" onAction="#shutdown" text="Stop" />
+                     <Button mnemonicParsing="false" text="Config" />
+                     <Button mnemonicParsing="false" onAction="#exitApplication" text="Cancel" />
+                 </buttons>
+               </ButtonBar>
+               <SplitPane dividerPositions="0.07246376811594205" orientation="VERTICAL" prefHeight="97.0" prefWidth="266.0">
+                 <items>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                     <TextArea fx:id="StartupLogArea" prefHeight="49.0" prefWidth="266.0" />
+                 </items>
+               </SplitPane>
+            </children>
+         </VBox>
+         <Separator orientation="VERTICAL" prefHeight="281.0" prefWidth="94.0" />
+         <VBox prefHeight="281.0" prefWidth="343.0">
+            <children>
+               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="340.0" text="Message Definition File" textAlignment="CENTER" />
+               <HBox layoutX="10.0" layoutY="85.0" prefHeight="25.0" prefWidth="307.0">
+                  <children>
+                     <TextField fx:id="MessageFileTextField" prefHeight="25.0" prefWidth="296.0" text="config/messages.yaml" />
+                     <Button fx:id="MessageFileChooseButton" minWidth="66.0" mnemonicParsing="false" onAction="#onMessageFileChooseButtonClick" prefHeight="25.0" text="..." />
+                  </children>
+               </HBox>
+               <Label alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="17.0" prefWidth="340.0" text="Configuration File" textAlignment="CENTER" />
+               <HBox prefHeight="25.0" prefWidth="307.0">
+                  <children>
+                     <TextField fx:id="FlagFileTextField" prefHeight="25.0" prefWidth="296.0" text="config/config.yaml" />
+                   <Button minWidth="66.0" mnemonicParsing="false" prefHeight="25.0" text="..." />
+                  </children>
+               </HBox>
+               <Separator prefHeight="29.0" prefWidth="294.0" />
+               <GridPane>
+                 <columnConstraints>
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                 </columnConstraints>
+                 <rowConstraints>
+                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                 </rowConstraints>
+                  <children>
+                     <Button fx:id="VehicleManagerButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onVehicleManagerButtonClick" text="Vehicle Manager" GridPane.columnIndex="1" />
+                     <ComboBox fx:id="VehicleSelectCombo" prefWidth="150.0" />
+                  </children>
+               </GridPane>
+               <ScrollPane prefHeight="111.0" prefWidth="294.0">
+                 <content>
+                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                        <children>
+                           <VBox fx:id="VehicleIconListVBox" layoutX="5.0" layoutY="3.0" prefHeight="97.0" prefWidth="291.0" />
+                        </children></AnchorPane>
+                 </content>
+               </ScrollPane>
+            </children>
+         </VBox>
+      </children></HBox>
+</VBox>

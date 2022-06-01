@@ -1,0 +1,19 @@
+standby:
+  header: "STBY"
+  type: "STATUS"
+
+log:
+  header: "LOGG"
+  type: "LOG"
+
+error:
+  header: "ERRR"
+  type: "STATUS"
+
+target_address:
+  header: "TGAD"
+  type: "NETWORK"
+
+standby_ack:
+  header: "STAC"
+  type: "ACK"
