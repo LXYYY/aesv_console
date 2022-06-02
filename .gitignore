@@ -45,3 +45,5 @@ log/*
 
 *.jar
 *.log
+
+*.jar
