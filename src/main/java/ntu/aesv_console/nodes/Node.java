@@ -74,8 +74,9 @@ public abstract class Node {
         logger.log("Started " + name + "...");
     }
 
-    public void stop() throws InterruptedException {
+    public void stop() throws InterruptedException, IOException {
         String[] stopCommand = makeStopCommand();
+        SystemUtils.executeCommands(execDir, name, stopCommand);
         if (monitor != null) {
             monitor.close();
         }
@@ -86,12 +87,13 @@ public abstract class Node {
     }
 
     private String[] makeExecCommand() {
-        return new String[]{execScriptFile(), vehicle, name};
+        return new String[]{"cmd", "/c", execScriptFile(),
+                vehicle, name};
     }
 
     private String[] makeStopCommand() {
-        return new String[]{stopScriptFile(), vehicle,
-                name};
+        return new String[]{"cmd", "/c", stopScriptFile(),
+                vehicle, name};
     }
 
     public boolean checkExecExists() {

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -20,6 +21,8 @@ import java.io.IOException;
 
 public class StartupController {
     final ToggleGroup vehicleSelectGroup = new ToggleGroup();
+    @FXML
+    public TableView VehicleInfoTableView;
     NodeManager node_manager;
     ConfigParser configParser;
     private String execDir;
@@ -39,7 +42,6 @@ public class StartupController {
     private TextField FlagFileTextField;
     @FXML
     private ComboBox<String> VehicleSelectCombo;
-
     private Stage VehicleManagerStage;
     @FXML
     private VBox VehicleIconListVBox;
@@ -67,14 +69,7 @@ public class StartupController {
 
     @FXML
     protected void onWheelControllerStartButtonClick() {
-        NodeStartupButtonKit kit =
-                new NodeStartupButtonKit(execDir,
-                        vehicleManager.getCurrentVehicle(),
-                        ControllerStartButton,
-                        ControllerStartProgressIndicator,
-                        null, "IMU",
-                        "WheelControllerNode",
-                        2002, node_manager);
+        NodeStartupButtonKit kit = new NodeStartupButtonKit(execDir, vehicleManager.getCurrentVehicle(), ControllerStartButton, ControllerStartProgressIndicator, null, "IMU", "WheelControllerNode", 2002, node_manager);
         kit.onStartButtonClick();
     }
 
@@ -145,8 +140,10 @@ public class StartupController {
         vehicleManager = fxmlLoader.getController();
         vehicleManager.setExecDir(execDir);
 
-        VehicleSelectCombo.setItems(vehicleManager.getVehicles());
-        VehicleSelectCombo.getSelectionModel().select(vehicleManager.getCurrentVehicle());
+        if (VehicleSelectCombo != null) {
+            VehicleSelectCombo.setItems(vehicleManager.getVehicles());
+            VehicleSelectCombo.getSelectionModel().select(vehicleManager.getCurrentVehicle());
+        }
 
 
         // set vehicle select group listener
@@ -171,9 +168,10 @@ public class StartupController {
 
             vehicleInfo.setComboBox(VehicleSelectCombo);
             vehicleInfo.setRadioButton(radioButton);
+            vehicleInfo.setVehicleInfoTable(VehicleInfoTableView);
 
             // set radio button icon
-            String iconPath = vehicleInfo.getIcon();
+            String iconPath = vehicleInfo.getIconFile();
             System.out.println("iconPath: " + iconPath);
             try {
                 Image image = new Image(new FileInputStream(iconPath));
@@ -187,6 +185,21 @@ public class StartupController {
             VehicleIconListVBox.getChildren().add(radioButton);
         }
 
+        // hide veh info table header row
+        VehicleInfoTableView.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number oldSceneWidth, Number newSceneWidth) {
+                Pane header = (Pane) VehicleInfoTableView.lookup("TableHeaderRow");
+                header.setMaxHeight(0);
+                header.setMinHeight(0);
+                header.setPrefHeight(0);
+                header.setVisible(false);
+            }
+        });
+
+
+        // make sure gui is showing the current vehicle
+        vehicleManager.setCurrentVehicle(vehicleManager.getDefaultVehicle());
     }
 
 
@@ -201,8 +214,7 @@ public class StartupController {
 
     public void disconnect() {
         try {
-            SystemUtils.executeCommands(execDir, "StopAll",
-                    "disconnect.bat");
+            SystemUtils.executeCommands(execDir, "StopAll", "disconnect.bat");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

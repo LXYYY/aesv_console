@@ -13,7 +13,8 @@
      <menus>
        <Menu mnemonicParsing="false" text="File">
          <items>
-           <MenuItem mnemonicParsing="false" text="Close" />
+               <MenuItem mnemonicParsing="false" onAction="#onVehicleManagerButtonClick" text="Vehicle Manager" />
+           <MenuItem mnemonicParsing="false" onAction="#exitApplication" text="Close" />
          </items>
        </Menu>
        <Menu mnemonicParsing="false" text="Edit">
@@ -91,27 +92,25 @@
                   </children>
                </HBox>
                <Separator prefHeight="29.0" prefWidth="294.0" />
-               <GridPane>
-                 <columnConstraints>
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
+               <HBox prefHeight="146.0" prefWidth="326.0">
                   <children>
-                     <Button fx:id="VehicleManagerButton" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#onVehicleManagerButtonClick" text="Vehicle Manager" GridPane.columnIndex="1" />
-                     <ComboBox fx:id="VehicleSelectCombo" prefWidth="150.0" />
+                     <ScrollPane prefHeight="100.0" prefWidth="151.0">
+                       <content>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="128.0" prefWidth="131.0">
+                              <children>
+                                 <VBox fx:id="VehicleIconListVBox" layoutX="5.0" layoutY="3.0" prefHeight="97.0" prefWidth="177.0" />
+                              </children>
+                           </AnchorPane>
+                       </content>
+                     </ScrollPane>
+                     <TableView fx:id="VehicleInfoTableView" editable="true" prefHeight="200.0" prefWidth="200.0">
+                       <columns>
+                         <TableColumn prefWidth="75.0" text="C1" />
+                         <TableColumn prefWidth="75.0" text="C2" />
+                       </columns>
+                     </TableView>
                   </children>
-               </GridPane>
-               <ScrollPane prefHeight="111.0" prefWidth="294.0">
-                 <content>
-                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                        <children>
-                           <VBox fx:id="VehicleIconListVBox" layoutX="5.0" layoutY="3.0" prefHeight="97.0" prefWidth="291.0" />
-                        </children></AnchorPane>
-                 </content>
-               </ScrollPane>
+               </HBox>
             </children>
          </VBox>
       </children></HBox>

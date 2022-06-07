@@ -10,15 +10,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="update">
-      <change afterPath="$PROJECT_DIR$/bin/stream_receiver_dc.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bin/teleop_motion_dc.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/toyotaIP.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/toyotaIP.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/NodeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/NodeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/IMUSynchronizerNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/IMUSynchronizerNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/NodeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/NodeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/StreamReceiverNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/StreamReceiverNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/WheelControllerNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/WheelControllerNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +136,7 @@
       <workItem from="1654159969931" duration="1292000" />
       <workItem from="1654238791463" duration="2802000" />
       <workItem from="1654523986559" duration="41000" />
-      <workItem from="1654574875904" duration="2234000" />
+      <workItem from="1654574875904" duration="8041000" />
     </task>
     <task id="LOCAL-00001" summary="change to maven, init commit">
       <created>1654078956553</created>

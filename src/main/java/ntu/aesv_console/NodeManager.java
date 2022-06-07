@@ -46,7 +46,7 @@ public class NodeManager {
         for (Node node : nodes.values()) {
             try {
                 node.stop();
-            } catch (InterruptedException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
