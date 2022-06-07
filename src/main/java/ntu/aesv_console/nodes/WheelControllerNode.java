@@ -22,6 +22,6 @@ public class WheelControllerNode extends Node {
 
     @Override
     public String stopScriptFile() {
-        return null;
+        return "disconnect.bat";
     }
 }
