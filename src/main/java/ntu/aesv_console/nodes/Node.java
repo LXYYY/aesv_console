@@ -20,8 +20,10 @@ public abstract class Node {
     private Process process;
     private NodeMonitor monitor;
     private String execDir;
+    private String vehicle;
 
-    public Node(String execDir, String name, String ip,
+    public Node(String execDir, String vehicle, String name,
+                String ip,
                 int port, String messageFile, String flagFile) throws FileNotFoundException {
         this.name = name;
         this.ip = ip;
@@ -31,22 +33,25 @@ public abstract class Node {
         this.process = null;
         this.messageFile = messageFile;
         this.execDir = execDir;
+        this.vehicle = vehicle;
         msgParser = new MessageParser(messageFile);
         setStatus(Status.UNINITIALIZED);
     }
 
     public abstract void MsgReceiveCallback(String msg);
 
-    public abstract String execFileName();
+    public abstract String execScriptFile();
+
+    public abstract String stopScriptFile();
 
     private void setStatus(int status) {
         this.status = status;
     }
 
-    public void start(String vehicle, SystemUtils.Logging logger) throws IOException {
+    public void start(SystemUtils.Logging logger) throws IOException {
         logger.log("Starting " + name + "...");
 
-        String[] command = makeExecCommand(vehicle);
+        String[] command = makeExecCommand();
         process = SystemUtils.executeCommands(execDir, name,
                 command);
 
@@ -70,6 +75,7 @@ public abstract class Node {
     }
 
     public void stop() throws InterruptedException {
+        String[] stopCommand = makeStopCommand();
         if (monitor != null) {
             monitor.close();
         }
@@ -79,13 +85,18 @@ public abstract class Node {
         System.out.println("Stopped " + name + "...");
     }
 
-    private String[] makeExecCommand(String vehicle) {
-        return new String[]{execFileName(), vehicle, name};
+    private String[] makeExecCommand() {
+        return new String[]{execScriptFile(), vehicle, name};
+    }
+
+    private String[] makeStopCommand() {
+        return new String[]{stopScriptFile(), vehicle,
+                name};
     }
 
     public boolean checkExecExists() {
         return SystemUtils.checkFileExists(execDir,
-                execFileName());
+                execScriptFile());
     }
 
     public static class Status {

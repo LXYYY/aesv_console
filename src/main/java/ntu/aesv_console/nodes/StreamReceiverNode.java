@@ -5,9 +5,11 @@ import java.io.FileNotFoundException;
 public class StreamReceiverNode extends Node {
 
 
-    public StreamReceiverNode(String dir,String name,
+    public StreamReceiverNode(String dir,
+                              String vehicle, String name,
                               String ip, int port, String messageFile, String flagFile) throws FileNotFoundException {
-        super(dir,name, ip, port, messageFile, flagFile);
+        super(dir, vehicle, name, ip, port, messageFile,
+                flagFile);
     }
 
     @Override
@@ -16,7 +18,12 @@ public class StreamReceiverNode extends Node {
     }
 
     @Override
-    public String execFileName() {
+    public String execScriptFile() {
         return "stream_receiver.bat";
+    }
+
+    @Override
+    public String stopScriptFile() {
+        return null;
     }
 }

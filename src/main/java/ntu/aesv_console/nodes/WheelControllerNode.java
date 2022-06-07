@@ -3,9 +3,11 @@ package ntu.aesv_console.nodes;
 import java.io.FileNotFoundException;
 
 public class WheelControllerNode extends Node {
-    public WheelControllerNode(String dir, String name,
+    public WheelControllerNode(String dir,
+                               String vehicle, String name,
                                String ip, int port, String messageFile, String flagFile) throws FileNotFoundException {
-        super(dir, name, ip, port, messageFile, flagFile);
+        super(dir, vehicle, name, ip, port, messageFile,
+                flagFile);
     }
 
     @Override
@@ -14,7 +16,12 @@ public class WheelControllerNode extends Node {
     }
 
     @Override
-    public String execFileName() {
+    public String execScriptFile() {
         return "teleop_wheel_controller.bat";
+    }
+
+    @Override
+    public String stopScriptFile() {
+        return null;
     }
 }

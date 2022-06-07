@@ -10,12 +10,14 @@ public class NodeFactory {
     public NodeFactory() {
     }
 
-    public Node createNode(String dir,String type,
-                           String name, int port) throws FileNotFoundException {
+    public Node createNode(String dir, String vehicle, String type, String name, int port) throws FileNotFoundException {
         return switch (type) {
-            case "StreamReceiverNode" -> new StreamReceiverNode(dir,name, ip, port, messageFile, flagFile);
-            case "IMUSynchronizerNode" -> new IMUSynchronizerNode(dir,name, ip, port, messageFile, flagFile);
-            case "WheelControllerNode" -> new IMUSynchronizerNode(dir,name, ip, port, messageFile, flagFile);
+            case "StreamReceiverNode" ->
+                    new StreamReceiverNode(dir, vehicle, name, ip, port, messageFile, flagFile);
+            case "IMUSynchronizerNode" ->
+                    new IMUSynchronizerNode(dir, vehicle, name, ip, port, messageFile, flagFile);
+            case "WheelControllerNode" ->
+                    new WheelControllerNode(dir, vehicle, name, ip, port, messageFile, flagFile);
             default -> null;
         };
     }

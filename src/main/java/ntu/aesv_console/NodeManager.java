@@ -28,16 +28,17 @@ public class NodeManager {
 
     public void startNode(String dir, String vehicle, String type, String name, Integer port) throws IOException {
         logger.log("Starting node: " + name);
-        Node node = nodeFactory.createNode(dir, type, name,
+        Node node = nodeFactory.createNode(dir, vehicle,
+                type, name,
                 port);
         if (node == null) {
             throw new RuntimeException(type + ": Node not found");
         }
         if (!node.checkExecExists()) {
             throw new RuntimeException("Node executable " +
-                    "not found: " + node.execFileName());
+                    "not found: " + node.execScriptFile());
         }
-        node.start(vehicle, logger);
+        node.start(logger);
         nodes.put(name, node);
     }
 
@@ -49,5 +50,6 @@ public class NodeManager {
                 e.printStackTrace();
             }
         }
+        nodes.clear();
     }
 }
