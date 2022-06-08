@@ -26,7 +26,8 @@ public class NodeManager {
         this.logger = logger;
     }
 
-    public void startNode(String dir, String vehicle, String type, String name, Integer port) throws IOException {
+    public void startNode(String dir, Vehicle vehicle,
+                          String type, String name, Integer port) throws IOException {
         logger.log("Starting node: " + name);
         Node node = nodeFactory.createNode(dir, vehicle,
                 type, name,

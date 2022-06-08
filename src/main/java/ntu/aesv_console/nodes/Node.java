@@ -1,6 +1,7 @@
 package ntu.aesv_console.nodes;
 
 import ntu.aesv_console.SystemUtils;
+import ntu.aesv_console.Vehicle;
 import ntu.aesv_console.messages.MessageParser;
 
 import java.io.FileNotFoundException;
@@ -20,9 +21,9 @@ public abstract class Node {
     private Process process;
     private NodeMonitor monitor;
     private String execDir;
-    private String vehicle;
+    private Vehicle vehicle;
 
-    public Node(String execDir, String vehicle, String name,
+    public Node(String execDir, Vehicle vehicle, String name,
                 String ip,
                 int port, String messageFile, String flagFile) throws FileNotFoundException {
         this.name = name;
@@ -38,11 +39,17 @@ public abstract class Node {
         setStatus(Status.UNINITIALIZED);
     }
 
+    public final Vehicle getVehicle() {
+        return vehicle;
+    }
+
     public abstract void MsgReceiveCallback(String msg);
 
     public abstract String execScriptFile();
 
     public abstract String stopScriptFile();
+
+    public abstract String exeProcessName();
 
     private void setStatus(int status) {
         this.status = status;
@@ -88,12 +95,12 @@ public abstract class Node {
 
     private String[] makeExecCommand() {
         return new String[]{"cmd", "/c", execScriptFile(),
-                vehicle, name};
+                vehicle.info.getName(), name};
     }
 
     private String[] makeStopCommand() {
         return new String[]{"cmd", "/c", stopScriptFile(),
-                vehicle, name};
+                vehicle.info.getName(), name};
     }
 
     public boolean checkExecExists() {

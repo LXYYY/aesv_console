@@ -1,5 +1,19 @@
 package ntu.aesv_console;
 
+import java.io.IOException;
+
 public class Vehicle {
-    VehicleInfo info;
+    public final VehicleInfo info;
+
+    public Vehicle(VehicleInfo info) {
+        this.info = info;
+    }
+
+    public void setAsSelected() {
+        info.setAsSelected();
+    }
+
+    public void syncVehicleIPWithTxt(String execDir) throws IOException {
+        info.syncVehicleIPWithTxt(execDir);
+    }
 }

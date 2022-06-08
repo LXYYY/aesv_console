@@ -151,8 +151,8 @@ public class StartupController {
         vehicleManager.setExecDir(execDir);
 
         if (VehicleSelectCombo != null) {
-            VehicleSelectCombo.setItems(vehicleManager.getVehicles());
-            VehicleSelectCombo.getSelectionModel().select(vehicleManager.getCurrentVehicle());
+            VehicleSelectCombo.setItems(vehicleManager.getVehicleNames());
+            VehicleSelectCombo.getSelectionModel().select(vehicleManager.getCurrentVehicle().info.getName());
         }
 
 
@@ -166,8 +166,9 @@ public class StartupController {
         });
 
         // for all vehiclesInfo
-        for (Object key : vehicleManager.getVehiclesInfo().keySet()) {
-            VehicleInfo vehicleInfo = (VehicleInfo) vehicleManager.getVehiclesInfo().get(key);
+        for (Object key : vehicleManager.getVehicles().keySet()) {
+            VehicleInfo vehicleInfo =
+                    vehicleManager.getVehicles().get(key).info;
             RadioButton radioButton = new RadioButton(vehicleInfo.getName());
             radioButton.setUserData(vehicleInfo.getName());
             radioButton.setToggleGroup(vehicleSelectGroup);
@@ -256,9 +257,11 @@ public class StartupController {
         public String node_type;
         public NodeManager nodeManager;
         public String dir;
-        public String vehicle;
+        public Vehicle vehicle;
 
-        public NodeStartupButtonKit(String dir, String vehicle, Button button, ProgressIndicator progressIndicator, Label label, String node_type, String node_name, int port, NodeManager nodeManager) {
+        public NodeStartupButtonKit(String dir,
+                                    Vehicle vehicle
+                , Button button, ProgressIndicator progressIndicator, Label label, String node_type, String node_name, int port, NodeManager nodeManager) {
             this.button = button;
             this.progressIndicator = progressIndicator;
             this.label = label;

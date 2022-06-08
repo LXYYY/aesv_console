@@ -1,5 +1,7 @@
 package ntu.aesv_console.nodes;
 
+import ntu.aesv_console.Vehicle;
+
 import java.io.FileNotFoundException;
 
 public class NodeFactory {
@@ -10,7 +12,8 @@ public class NodeFactory {
     public NodeFactory() {
     }
 
-    public Node createNode(String dir, String vehicle, String type, String name, int port) throws FileNotFoundException {
+    public Node createNode(String dir, Vehicle vehicle,
+                           String type, String name, int port) throws FileNotFoundException {
         return switch (type) {
             case "StreamReceiverNode" ->
                     new StreamReceiverNode(dir, vehicle, name, ip, port, messageFile, flagFile);

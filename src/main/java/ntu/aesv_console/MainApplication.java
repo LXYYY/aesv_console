@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.transform.Scale;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +20,19 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+        // get screens
+        Rectangle2D screenBounds =
+                Screen.getPrimary().getVisualBounds();
+        if (Screen.getScreens().size() > 1) {
+            for (Screen screen : Screen.getScreens()) {
+                if (screen.getVisualBounds().getMinX() != Screen.getPrimary().getVisualBounds().getMinX()
+                        || screen.getVisualBounds().getMinY() != Screen.getPrimary().getVisualBounds().getMinY()) {
+                    screenBounds = screen.getVisualBounds();
+                    break;
+                }
+            }
+        }
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("hello-view.fxml"));
         Pane root = fxmlLoader.load();
         Scene scene = new Scene(root, 720, 405);
@@ -28,7 +43,6 @@ public class MainApplication extends Application {
         System.out.println("Hello World!");
         StartupController controller = fxmlLoader.getController();
         stage.setOnCloseRequest(e -> controller.shutdown());
-
 
         final double initWidth = scene.getWidth();
         final double initHeight = scene.getHeight();
@@ -41,8 +55,13 @@ public class MainApplication extends Application {
         scene.widthProperty().addListener(sizeListener);
         scene.heightProperty().addListener(sizeListener);
 
+        stage.setX(screenBounds.getMinX());
+        stage.setY(screenBounds.getMinY());
+        stage.setWidth(screenBounds.getWidth());
+        stage.setHeight(screenBounds.getHeight());
+
         stage.setFullScreenExitHint("");
-        stage.setFullScreen(true);
+//        stage.setFullScreen(true);
     }
 
     private static class SceneSizeChangeListener implements ChangeListener<Number> {
