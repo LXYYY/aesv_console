@@ -82,6 +82,19 @@ public class VehicleInfo {
         return FXCollections.observableArrayList(props);
     }
 
+    public void showOnTable() {
+        TableColumn<Property, String> nameCol =
+                new TableColumn<>("Key");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("Key"));
+
+        TableColumn<Property, String> valueCol = new TableColumn<>("Value");
+        valueCol.setCellValueFactory(new PropertyValueFactory<>("value"));
+
+        VehicleInfoTable.getColumns().addAll(nameCol, valueCol);
+
+        VehicleInfoTable.setItems(getVehicleInfo());
+    }
+
     public void setAsSelected() {
         radioButton.setSelected(true);
         if (comboBox != null) {

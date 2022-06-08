@@ -25,6 +25,8 @@ public class StartupController {
     public TableView VehicleInfoTableView;
     NodeManager node_manager;
     ConfigParser configParser;
+    String configFilePath = "config/config.yaml";
+    String messageFilePath = "config/config.yaml";
     private String execDir;
     @FXML
     private Button StreamStartButton;
@@ -117,22 +119,30 @@ public class StartupController {
         VehicleManagerStage.setScene(new Scene(root, 600, 400));
 
 
-        File file = new File(MessageFileTextField.getText());
+        File file = null;
+        if (MessageFileTextField != null) {
+            file = new File(messageFilePath);
 
-        if (file.exists()) {
-            MessageFileTextField.setText(file.getAbsolutePath());
-        } else {
-            throw new RuntimeException("Message file not found");
+            if (file.exists()) {
+                MessageFileTextField.setText(file.getAbsolutePath());
+                messageFilePath = file.getAbsolutePath();
+            } else {
+                throw new RuntimeException("Message file not found");
+            }
         }
 
-        file = new File(FlagFileTextField.getText());
-        if (file.exists()) {
-            FlagFileTextField.setText(file.getAbsolutePath());
-        } else {
-            throw new RuntimeException("Flag file not found");
+
+        if (FlagFileTextField != null) {
+            file = new File(configFilePath);
+            if (file.exists()) {
+                FlagFileTextField.setText(file.getAbsolutePath());
+                configFilePath = file.getAbsolutePath();
+            } else {
+                throw new RuntimeException("Flag file not found");
+            }
         }
 
-        configParser = new ConfigParser(FlagFileTextField.getText());
+        configParser = new ConfigParser(configFilePath);
         execDir = configParser.getConfig().get("exec_dir").toString();
 
         initNodeManager();
@@ -205,7 +215,7 @@ public class StartupController {
 
     private void initNodeManager() {
         try {
-            node_manager = new NodeManager(MessageFileTextField.getText(), FlagFileTextField.getText(), message -> StartupLogArea.appendText(message + '\n'));
+            node_manager = new NodeManager(messageFilePath, configFilePath, message -> StartupLogArea.appendText(message + '\n'));
         } catch (IOException e) {
             e.printStackTrace();
         }

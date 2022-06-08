@@ -11,6 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/vehicle-manager.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/vehicle-manager.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,12 +42,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="platform_pc" />
-                    <option name="lastUsedInstant" value="1654586641" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1654591253" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1654153221" />
+                    <option name="branchName" value="platform_pc" />
+                    <option name="lastUsedInstant" value="1654586641" />
                   </RecentBranch>
                 </list>
               </option>
@@ -130,6 +135,10 @@
       <workItem from="1654238791463" duration="2802000" />
       <workItem from="1654523986559" duration="41000" />
       <workItem from="1654574875904" duration="9053000" />
+      <workItem from="1654591119437" duration="907000" />
+      <workItem from="1654594040393" duration="715000" />
+      <workItem from="1654652481393" duration="2287000" />
+      <workItem from="1654655802812" duration="3158000" />
     </task>
     <task id="LOCAL-00001" summary="change to maven, init commit">
       <created>1654078956553</created>
