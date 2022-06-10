@@ -1,7 +1,7 @@
 package ntu.aesv_console.nodes;
 
 import ntu.aesv_console.Vehicle;
-import ntu.aesv_console.VehicleInfo;
+import ntu.aesv_console.monitors.ProcessMonitor;
 
 import java.io.FileNotFoundException;
 
@@ -9,10 +9,11 @@ public class IMUSynchronizerNode extends Node {
 
 
     public IMUSynchronizerNode(String dir,
-                               Vehicle vehicle, String name,
-                               String ip, int port, String messageFile, String flagFile) throws FileNotFoundException {
-        super(dir, vehicle, name, ip, port, messageFile,
-                flagFile);
+                               Vehicle vehicle,
+                               ProcessMonitor processMonitor, String name,
+                               String messageFile, String flagFile) throws FileNotFoundException {
+        super(dir, vehicle,processMonitor, name,
+                messageFile, flagFile);
     }
 
     @Override

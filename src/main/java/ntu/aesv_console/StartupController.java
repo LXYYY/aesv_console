@@ -12,8 +12,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import ntu.aesv_console.monitors.ProcessMonitor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -56,22 +59,70 @@ public class StartupController {
     private Button ControllerStartButton;
     @FXML
     private ProgressIndicator ControllerStartProgressIndicator;
+    @FXML
+    private Circle StreamLED;
+    @FXML
+    private Circle MotionLED;
+    @FXML
+    private Circle ControllerLED;
+    @FXML
+    private Label StmCPULabel;
+    @FXML
+    private Label StmMemLabel;
+    @FXML
+    private Label StmNetLabel;
+    @FXML
+    private Label MtnCPULabel;
+    @FXML
+    private Label MtnMemLabel;
+    @FXML
+    private Label MtnNetLabel;
+    @FXML
+    private Label CtrlCPULabel;
+    @FXML
+    private Label CtrlMemLabel;
+    @FXML
+    private Label CtrlNetLabel;
 
     @FXML
     protected void onStreamStartButtonClick() {
-        NodeStartupButtonKit kit = new NodeStartupButtonKit(execDir, vehicleManager.getCurrentVehicle(), StreamStartButton, StreamStartProgressIndicator, null, "StreamReceiver", "StreamReceiverNode", 2000, node_manager);
+        NodeStartupButtonKit.VisKit viskit =
+                new NodeStartupButtonKit.VisKit();
+        viskit.CPU = StmCPULabel;
+        viskit.mem = StmMemLabel;
+        viskit.net = StmNetLabel;
+        viskit.LED = StreamLED;
+        NodeStartupButtonKit kit =
+                new NodeStartupButtonKit(execDir,
+                        vehicleManager.getCurrentVehicle(), viskit, StreamStartButton, null, "StreamReceiverNode", node_manager);
         kit.onStartButtonClick();
     }
 
     @FXML
     protected void onIMUStartButtonClick() {
-        NodeStartupButtonKit kit = new NodeStartupButtonKit(execDir, vehicleManager.getCurrentVehicle(), IMUStartButton, IMUStartProgressIndicator, null, "IMU", "IMUSynchronizerNode", 2001, node_manager);
+        NodeStartupButtonKit.VisKit viskit =
+                new NodeStartupButtonKit.VisKit();
+        viskit.CPU = MtnCPULabel;
+        viskit.mem = MtnMemLabel;
+        viskit.net = MtnNetLabel;
+        viskit.LED = MotionLED;
+        NodeStartupButtonKit kit =
+                new NodeStartupButtonKit(execDir,
+                        vehicleManager.getCurrentVehicle(), viskit, IMUStartButton, null, "IMUSynchronizerNode", node_manager);
         kit.onStartButtonClick();
     }
 
     @FXML
     protected void onWheelControllerStartButtonClick() {
-        NodeStartupButtonKit kit = new NodeStartupButtonKit(execDir, vehicleManager.getCurrentVehicle(), ControllerStartButton, ControllerStartProgressIndicator, null, "IMU", "WheelControllerNode", 2002, node_manager);
+        NodeStartupButtonKit.VisKit viskit =
+                new NodeStartupButtonKit.VisKit();
+        viskit.CPU = CtrlCPULabel;
+        viskit.mem = CtrlMemLabel;
+        viskit.net = CtrlNetLabel;
+        viskit.LED = ControllerLED;
+        NodeStartupButtonKit kit =
+                new NodeStartupButtonKit(execDir,
+                        vehicleManager.getCurrentVehicle(), viskit, ControllerStartButton, null, "WheelControllerNode", node_manager);
         kit.onStartButtonClick();
     }
 
@@ -167,8 +218,7 @@ public class StartupController {
 
         // for all vehiclesInfo
         for (Object key : vehicleManager.getVehicles().keySet()) {
-            VehicleInfo vehicleInfo =
-                    vehicleManager.getVehicles().get(key).info;
+            VehicleInfo vehicleInfo = vehicleManager.getVehicles().get(key).info;
             RadioButton radioButton = new RadioButton(vehicleInfo.getName());
             radioButton.setUserData(vehicleInfo.getName());
             radioButton.setToggleGroup(vehicleSelectGroup);
@@ -211,6 +261,7 @@ public class StartupController {
 
         // make sure gui is showing the current vehicle
         vehicleManager.setCurrentVehicle(vehicleManager.getDefaultVehicle());
+
     }
 
 
@@ -249,28 +300,28 @@ public class StartupController {
     }
 
     public static class NodeStartupButtonKit {
-        public final int port;
+        public final VisKit visKit;
         public Button button;
-        public ProgressIndicator progressIndicator;
         public Label label;
-        public String node_name;
         public String node_type;
         public NodeManager nodeManager;
         public String dir;
         public Vehicle vehicle;
 
         public NodeStartupButtonKit(String dir,
-                                    Vehicle vehicle
-                , Button button, ProgressIndicator progressIndicator, Label label, String node_type, String node_name, int port, NodeManager nodeManager) {
+                                    Vehicle vehicle,
+                                    VisKit visKit,
+                                    Button button,
+                                    Label label,
+                                    String node_type,
+                                    NodeManager nodeManager) {
             this.button = button;
-            this.progressIndicator = progressIndicator;
             this.label = label;
-            this.node_name = node_name;
             this.node_type = node_type;
             this.nodeManager = nodeManager;
-            this.port = port;
             this.dir = dir;
             this.vehicle = vehicle;
+            this.visKit = visKit;
         }
 
         public void onStartButtonClick() {
@@ -279,11 +330,36 @@ public class StartupController {
 //                progressIndicator.setProgress(0.5);
 
                 try {
-                    nodeManager.startNode(dir, vehicle, node_name, node_type, port);
+                    ProcessMonitor processMonitor =
+                            new ProcessMonitor(new ProcessMonitor.Visualizer() {
+                                @Override
+                                public void showExist(boolean exists) {
+                                    if (exists) {
+                                        visKit.LED.setFill(Color.GREEN);
+                                    } else {
+                                        visKit.LED.setFill(Color.RED);
+                                    }
+                                }
+
+                                @Override
+                                public void showCPU(String cpu) {
+                                    visKit.CPU.setText(cpu);
+                                }
+
+                                @Override
+                                public void showMem(String mem) {
+                                    visKit.mem.setText(mem);
+                                }
+
+                                @Override
+                                public void showNet(String net) {
+                                    visKit.net.setText(net);
+                                }
+                            });
+                    nodeManager.startNode(dir, vehicle, processMonitor, node_type);
                 } catch (IOException e) {
                     e.printStackTrace();
                     WindowUtils.showExceptionInAlert(e);
-                    return;
                 }
 
 //                button.setText("Started");
@@ -292,6 +368,13 @@ public class StartupController {
             } else if (button.getText().equals("Started")) {
                 button.setText("Stopping...");
             }
+        }
+
+        public static class VisKit {
+            public Circle LED;
+            public Label CPU;
+            public Label mem;
+            public Label net;
         }
     }
 }
