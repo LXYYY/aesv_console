@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.util.function.Supplier;
 
 public class ProcessMonitor {
-    public static final int interval = 1000;
+    public static final int interval = 1;
     public MonitorThread monitor;
     public SystemUtils.Logging logger;
     public Visualizer vis;
@@ -58,6 +58,7 @@ public class ProcessMonitor {
                                 if (line == null) {
                                     return new PerfStat();
                                 }
+                                System.out.println(line);
                                 return new PerfStat(line.split("\\s+"));
                             } catch (IOException e) {
                                 e.printStackTrace();
@@ -108,6 +109,7 @@ public class ProcessMonitor {
             reader.readLine();
             String line = reader.readLine();
             logger.log(line);
+            System.out.println(line);
             String[] tokens = line.split("\\s+");
             float cpu = Float.parseFloat(tokens[5]);
             float mem = Float.parseFloat(tokens[4]);
@@ -145,22 +147,6 @@ public class ProcessMonitor {
         public String pid = null;
     }
 
-    public record PerfStat(boolean exists,
-                           String pid, float cpu,
-                           float mem, float net) {
-        public PerfStat() {
-            this(false, null, 0, 0, 0);
-        }
-
-        public PerfStat(String[] tokens) {
-            this(Boolean.parseBoolean(tokens[0]),
-                    tokens[1],
-                    Float.parseFloat(tokens[2].substring(0, Math.min(6, tokens[2].length()))),
-                    Float.parseFloat(tokens[3].substring(0, Math.min(6, tokens[3].length()))),
-                    Float.parseFloat(tokens[4].substring(0, Math.min(6, tokens[4].length()))));
-        }
-    }
-
     public static abstract class Visualizer {
         public abstract void showExist(boolean exists);
 
@@ -195,6 +181,36 @@ public class ProcessMonitor {
             };
 
             Platform.runLater(func);
+        }
+    }
+
+    public static class PerfStat {
+        public boolean exists;
+        public String pid;
+        public float cpu;
+        public float mem;
+        public float net;
+
+        PerfStat(boolean exists,
+                 String pid, float cpu,
+                 float mem, float net) {
+            this.exists = exists;
+            this.pid = pid;
+            this.cpu = cpu;
+            this.mem = mem;
+            this.net = net;
+        }
+
+        public PerfStat() {
+            this(false, null, 0, 0, 0);
+        }
+
+        public PerfStat(String[] tokens) {
+            this(tokens[0].equals("1"),
+                    tokens[1],
+                    Float.parseFloat(tokens[2].substring(0, Math.min(6, tokens[2].length()))),
+                    Float.parseFloat(tokens[3].substring(0, Math.min(6, tokens[3].length()))),
+                    Float.parseFloat(tokens[4].substring(0, Math.min(6, tokens[4].length()))));
         }
     }
 

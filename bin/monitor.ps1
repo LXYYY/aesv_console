@@ -9,20 +9,22 @@ while (1) {
 
   $Res = Get-Process -Name $process -ErrorAction SilentlyContinue
 
-  if ($Res) {
-    $running = 1
+	$cpu=[float]$Res.CPU/12
+  echo $cpu
+#  if ($Res) {
+ #   $running = 1
 
-  }
-  else {
+#  }
+ # else {
     $running = 0
-  }
+#  }
 
-  $pid_ = $Res.Id
-  $cpu = $Res.CPU / $Res.TotalProcessorTime.Milliseconds
-  $mem = $Res.WorkingSet64 / 1024 / 1024
+#  $pid_ = $Res.Id
+#  $cpu = $Res.CPU / $Res.TotalProcessorTime.Milliseconds
+#  $mem = $Res.WorkingSet64 / 1024 / 1024
 
 
-  echo "$running $pid_ $cpu $mem $net"
+#  echo "$running $pid_ $cpu $mem $net"
 
   sleep($interval)
 }

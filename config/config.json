@@ -11,5 +11,5 @@
     "default": "toyota"
   },
   "exec_dir": "bin",
-  "use_monitor": false,
+  "use_monitor": false
 }

@@ -21,6 +21,7 @@ import ntu.aesv_console.monitors.ProcessMonitor;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Map;
 
 public class StartupController {
     final ToggleGroup vehicleSelectGroup = new ToggleGroup();
@@ -31,6 +32,7 @@ public class StartupController {
     String configFilePath = "config/config.json";
     String messageFilePath = "config/config.json";
     private String execDir;
+    private Map config;
     @FXML
     private Button StreamStartButton;
     @FXML
@@ -95,7 +97,7 @@ public class StartupController {
         NodeStartupButtonKit kit =
                 new NodeStartupButtonKit(execDir,
                         vehicleManager.getCurrentVehicle(), viskit, StreamStartButton, null, "StreamReceiverNode", node_manager);
-        kit.onStartButtonClick();
+        kit.onStartButtonClick((Boolean) config.get("use_monitor"));
     }
 
     @FXML
@@ -109,7 +111,7 @@ public class StartupController {
         NodeStartupButtonKit kit =
                 new NodeStartupButtonKit(execDir,
                         vehicleManager.getCurrentVehicle(), viskit, IMUStartButton, null, "IMUSynchronizerNode", node_manager);
-        kit.onStartButtonClick();
+        kit.onStartButtonClick((Boolean) config.get("use_monitor"));
     }
 
     @FXML
@@ -123,7 +125,7 @@ public class StartupController {
         NodeStartupButtonKit kit =
                 new NodeStartupButtonKit(execDir,
                         vehicleManager.getCurrentVehicle(), viskit, ControllerStartButton, null, "WheelControllerNode", node_manager);
-        kit.onStartButtonClick();
+        kit.onStartButtonClick((Boolean) config.get("use_monitor"));
     }
 
     @FXML
@@ -194,7 +196,8 @@ public class StartupController {
         }
 
         configParser = new ConfigParser(configFilePath);
-        execDir = configParser.getConfig().get("exec_dir").toString();
+        config = configParser.getConfig();
+        execDir = config.get("exec_dir").toString();
 
         initNodeManager();
 
@@ -325,38 +328,46 @@ public class StartupController {
             this.visKit = visKit;
         }
 
-        public void onStartButtonClick() {
+        public void onStartButtonClick(Boolean useMonitor) {
             if (button.getText().equals("Start")) {
 //                button.setText("Starting...");
 //                progressIndicator.setProgress(0.5);
 
                 try {
-                    ProcessMonitor processMonitor =
-                            new ProcessMonitor(new ProcessMonitor.Visualizer() {
-                                @Override
-                                public void showExist(boolean exists) {
-                                    if (exists) {
-                                        visKit.LED.setFill(Color.GREEN);
-                                    } else {
-                                        visKit.LED.setFill(Color.RED);
+                    ProcessMonitor processMonitor = null;
+                    if (useMonitor) {
+                        processMonitor =
+                                new ProcessMonitor(new ProcessMonitor.Visualizer() {
+                                    @Override
+                                    public void showExist(boolean exists) {
+                                        if (exists) {
+                                            visKit.LED.setFill(Color.GREEN);
+                                        } else {
+                                            visKit.LED.setFill(Color.RED);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void showCPU(String cpu) {
-                                    visKit.CPU.setText(cpu);
-                                }
+                                    @Override
+                                    public void showCPU(String cpu) {
+                                        visKit.CPU.setText(cpu);
+                                    }
 
-                                @Override
-                                public void showMem(String mem) {
-                                    visKit.mem.setText(mem);
-                                }
+                                    @Override
+                                    public void showMem(String mem) {
+                                        visKit.mem.setText(mem);
+                                    }
 
-                                @Override
-                                public void showNet(String net) {
-                                    visKit.net.setText(net);
-                                }
-                            });
+                                    @Override
+                                    public void showNet(String net) {
+                                        visKit.net.setText(net);
+                                    }
+                                });
+                    }else{
+                        visKit.LED.setFill(Color.GREEN);
+                        visKit.CPU.setText("0");
+                        visKit.mem.setText("0");
+                        visKit.net.setText("0");
+                    }
                     nodeManager.startNode(dir, vehicle, processMonitor, node_type);
                 } catch (IOException e) {
                     e.printStackTrace();

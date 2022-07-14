@@ -33,7 +33,9 @@ public abstract class Node {
         this.execDir = execDir;
         this.vehicle = vehicle;
         this.processMonitor = processMonitor;
-        processMonitor.setProcessName(exeProcessName());
+        if (this.processMonitor != null) {
+            processMonitor.setProcessName(exeProcessName());
+        }
         msgParser = new MessageParser(messageFile);
         setStatus(Status.UNINITIALIZED);
     }
@@ -44,7 +46,8 @@ public abstract class Node {
 
     public void setLogger(SystemUtils.Logging logger) {
         this.logger = logger;
-        this.processMonitor.setLogger(logger);
+        if (this.processMonitor != null)
+            this.processMonitor.setLogger(logger);
     }
 
     public final Vehicle getVehicle() {
@@ -87,7 +90,9 @@ public abstract class Node {
 
         setStatus(Status.RUNNING);
 
-        processMonitor.start();
+        if(processMonitor != null) {
+            processMonitor.start();
+        }
 
         logger.log("Started " + name + "...");
     }
