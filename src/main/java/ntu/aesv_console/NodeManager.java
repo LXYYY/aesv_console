@@ -1,5 +1,6 @@
 package ntu.aesv_console;
 
+import ntu.aesv_console.monitors.ProcessMonitor;
 import ntu.aesv_console.nodes.Node;
 import ntu.aesv_console.nodes.NodeFactory;
 
@@ -26,11 +27,13 @@ public class NodeManager {
         this.logger = logger;
     }
 
-    public void startNode(String dir, String vehicle, String type, String name, Integer port) throws IOException {
-        logger.log("Starting node: " + name);
+    public void startNode(String dir, Vehicle vehicle,
+                          ProcessMonitor processMonitor,
+                          String type) throws IOException {
+        logger.log("Starting node: " + type);
         Node node = nodeFactory.createNode(dir, vehicle,
-                type, name,
-                port);
+                processMonitor,
+                type);
         if (node == null) {
             throw new RuntimeException(type + ": Node not found");
         }
@@ -38,8 +41,9 @@ public class NodeManager {
             throw new RuntimeException("Node executable " +
                     "not found: " + node.execScriptFile());
         }
-        node.start(logger);
-        nodes.put(name, node);
+        node.setLogger(logger);
+        node.start();
+        nodes.put(type, node);
     }
 
     public void stopAllNodes() {

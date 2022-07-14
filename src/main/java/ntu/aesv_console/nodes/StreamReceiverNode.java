@@ -1,15 +1,19 @@
 package ntu.aesv_console.nodes;
 
+import ntu.aesv_console.Vehicle;
+import ntu.aesv_console.monitors.ProcessMonitor;
+
 import java.io.FileNotFoundException;
 
 public class StreamReceiverNode extends Node {
 
 
-    public StreamReceiverNode(String dir,
-                              String vehicle, String name,
-                              String ip, int port, String messageFile, String flagFile) throws FileNotFoundException {
-        super(dir, vehicle, name, ip, port, messageFile,
-                flagFile);
+    public StreamReceiverNode(String dir, Vehicle vehicle
+            , ProcessMonitor processMonitor, String name,
+                              String messageFile,
+                              String flagFile) throws FileNotFoundException {
+        super(dir, vehicle, processMonitor, name,
+                messageFile, flagFile);
     }
 
     @Override
@@ -25,5 +29,10 @@ public class StreamReceiverNode extends Node {
     @Override
     public String stopScriptFile() {
         return "disconnect.bat";
+    }
+
+    @Override
+    public String exeProcessName() {
+        return getVehicle().info.getName() + "_receive";
     }
 }

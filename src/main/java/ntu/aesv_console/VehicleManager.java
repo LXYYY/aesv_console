@@ -1,8 +1,5 @@
 package ntu.aesv_console;
 
-import ntu.aesv_console.ConfigParser;
-import ntu.aesv_console.VehicleInfo;
-import ntu.aesv_console.WindowUtils;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -12,8 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxListCell;
 
-import java.io.*;
-import java.nio.file.Paths;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,30 +23,30 @@ public class VehicleManager {
     @FXML
     private TextField VehicleIPTextField;
 
-    private ObservableList<String> vehicles;
+    private ObservableList<String> vehicleNames;
 
     private ConfigParser configParser;
 
     private Map vehicleConfig;
 
-    private Map vehiclesInfo;
+    private Map<String, Vehicle> vehicles;
 
-    private String currentVehicle;
+    private Vehicle currentVehicle;
 
     private String execDir;
 
-    public Map getVehiclesInfo() {
-        return vehiclesInfo;
+    public Map<String, Vehicle> getVehicles() {
+        return vehicles;
     }
 
-    public ObservableList<String> getVehicles() {
-        return vehicles;
+    public ObservableList<String> getVehicleNames() {
+        return vehicleNames;
     }
 
     @FXML
     private void initialize() {
-        vehicles = FXCollections.observableArrayList();
-        vehiclesInfo = new HashMap<String, VehicleInfo>();
+        vehicleNames = FXCollections.observableArrayList();
+        vehicles = new HashMap<String, Vehicle>();
 
         configParser = new ConfigParser("config/vehicle_config.yaml");
         vehicleConfig = configParser.getConfig();
@@ -60,13 +56,13 @@ public class VehicleManager {
                 continue;
             }
             System.out.println(key + ": " + vehicleConfig.get(key));
-            vehicles.add((String) key);
+            vehicleNames.add((String) key);
             Map data = (Map) vehicleConfig.get(key);
             VehicleInfo vehicleInfo = new VehicleInfo(key.toString(), data.get("ip").toString(), data.get("icon").toString());
-            vehiclesInfo.put(key.toString(), vehicleInfo);
+            vehicles.put(key.toString(), new Vehicle(vehicleInfo));
         }
 
-        VehicleList.setItems(vehicles);
+        VehicleList.setItems(vehicleNames);
         System.out.println("VehicleManager initialized");
         VehicleList.setCellFactory(ComboBoxListCell.forListView(vehicles));
 
@@ -87,24 +83,30 @@ public class VehicleManager {
         this.execDir = execDir;
     }
 
-    public String getDefaultVehicle() {
-        return vehicleConfig.get("default").toString();
+    public Vehicle getDefaultVehicle() {
+        return vehicles.get(vehicleConfig.get("default").toString());
     }
 
-    public String getCurrentVehicle() {
+    public Vehicle getCurrentVehicle() {
         return currentVehicle;
     }
 
-    public Boolean setCurrentVehicle(String vehicle) {
-        if (vehicles.contains(vehicle)) {
+    public boolean setCurrentVehicle(String vehicleName) {
+        return setCurrentVehicle(vehicles.get(vehicleName));
+
+    }
+
+    public boolean setCurrentVehicle(Vehicle vehicle) {
+        assert vehicles.containsKey(vehicle.info.getName());
+        if (vehicles.containsKey(vehicle.info.getName())) {
             currentVehicle = vehicle;
-            ((VehicleInfo) vehiclesInfo.get(vehicle)).setAsSelected();
+            currentVehicle.setAsSelected();
             try {
-                ((VehicleInfo) vehiclesInfo.get(vehicle)).syncVehicleIPWithTxt(execDir);
+                currentVehicle.syncVehicleIPWithTxt(execDir);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("Current vehicle set to " + currentVehicle);
+            System.out.println("Current vehicle set to " + currentVehicle.info.getName());
             return true;
         }
         return false;

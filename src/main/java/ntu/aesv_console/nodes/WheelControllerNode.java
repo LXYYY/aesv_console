@@ -1,13 +1,13 @@
 package ntu.aesv_console.nodes;
 
+import ntu.aesv_console.Vehicle;
+import ntu.aesv_console.monitors.ProcessMonitor;
+
 import java.io.FileNotFoundException;
 
 public class WheelControllerNode extends Node {
-    public WheelControllerNode(String dir,
-                               String vehicle, String name,
-                               String ip, int port, String messageFile, String flagFile) throws FileNotFoundException {
-        super(dir, vehicle, name, ip, port, messageFile,
-                flagFile);
+    public WheelControllerNode(String dir, Vehicle vehicle, ProcessMonitor processMonitor, String name, String messageFile, String flagFile) throws FileNotFoundException {
+        super(dir, vehicle, processMonitor, name, messageFile, flagFile);
     }
 
     @Override
@@ -23,5 +23,10 @@ public class WheelControllerNode extends Node {
     @Override
     public String stopScriptFile() {
         return "disconnect.bat";
+    }
+
+    @Override
+    public String exeProcessName() {
+        return "teleop_wheel_controller";
     }
 }

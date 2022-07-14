@@ -1,5 +1,8 @@
 package ntu.aesv_console.nodes;
 
+import ntu.aesv_console.Vehicle;
+import ntu.aesv_console.monitors.ProcessMonitor;
+
 import java.io.FileNotFoundException;
 
 public class NodeFactory {
@@ -10,14 +13,25 @@ public class NodeFactory {
     public NodeFactory() {
     }
 
-    public Node createNode(String dir, String vehicle, String type, String name, int port) throws FileNotFoundException {
+    public Node createNode(String dir, Vehicle vehicle,
+                           ProcessMonitor processMonitor,
+                           String type) throws FileNotFoundException {
         return switch (type) {
             case "StreamReceiverNode" ->
-                    new StreamReceiverNode(dir, vehicle, name, ip, port, messageFile, flagFile);
+                    new StreamReceiverNode(dir, vehicle,
+                            processMonitor, type,
+                            messageFile,
+                            flagFile);
             case "IMUSynchronizerNode" ->
-                    new IMUSynchronizerNode(dir, vehicle, name, ip, port, messageFile, flagFile);
+                    new IMUSynchronizerNode(dir, vehicle,
+                            processMonitor, type,
+                            messageFile,
+                            flagFile);
             case "WheelControllerNode" ->
-                    new WheelControllerNode(dir, vehicle, name, ip, port, messageFile, flagFile);
+                    new WheelControllerNode(dir, vehicle,
+                            processMonitor, type,
+                            messageFile,
+                            flagFile);
             default -> null;
         };
     }
