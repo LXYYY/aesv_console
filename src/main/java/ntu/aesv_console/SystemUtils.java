@@ -16,11 +16,22 @@ public class SystemUtils {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
         File logFile = new File("log/" + logPrefix + "-" + dateFormat.format(date) + ".txt"); //Log errors in specified log file.
-//        pb.redirectError(logFile);
         pb.redirectOutput(logFile);
         process = pb.start();
         System.out.println(logPrefix + ": " + "Process started.");
         return process;
+    }
+
+    public static ProcessBuilder buildProcess(String dir,
+                                              String logPrefix, String... commands) throws IOException {
+        System.out.println(logPrefix + ": " + String.join(" ", commands));
+        ProcessBuilder pb = new ProcessBuilder(commands);
+        pb.directory(new File(dir)); //Set current directory
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+        Date date = new Date();
+        File logFile = new File("log/" + logPrefix + "-" + dateFormat.format(date) + ".txt"); //Log errors in specified log file.
+        pb.redirectError(logFile);
+        return pb;
     }
 
     public static boolean checkFileExists(String dir,
