@@ -48,8 +48,10 @@ public class VehicleManager {
         vehicleNames = FXCollections.observableArrayList();
         vehicles = new HashMap<String, Vehicle>();
 
-        configParser = new ConfigParser("config/vehicle_config.yaml");
-        vehicleConfig = configParser.getConfig();
+        configParser = new ConfigParser("config/config" +
+                ".json");
+        vehicleConfig =
+                (Map) configParser.getConfig().get("vehicles");
         // print out the key and value pairs
         for (Object key : vehicleConfig.keySet()) {
             if (key.toString().equals("default")) {

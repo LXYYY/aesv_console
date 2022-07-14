@@ -28,8 +28,8 @@ public class StartupController {
     public TableView VehicleInfoTableView;
     NodeManager node_manager;
     ConfigParser configParser;
-    String configFilePath = "config/config.yaml";
-    String messageFilePath = "config/config.yaml";
+    String configFilePath = "config/config.json";
+    String messageFilePath = "config/config.json";
     private String execDir;
     @FXML
     private Button StreamStartButton;

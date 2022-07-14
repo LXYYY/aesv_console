@@ -9,7 +9,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit" />
+    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/messages.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/vehicle_config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/ConfigParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/ConfigParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,6 +51,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/json" />
+                    <option name="lastUsedInstant" value="1657778974" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="develop" />
                     <option name="lastUsedInstant" value="1657778348" />
                   </RecentBranch>
@@ -68,23 +83,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/xiang/IdeaProjects/aesv_console/bin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/xiang/IdeaProjects/aesv_console/bin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.20229885",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\xiang\IdeaProjects\aesv_console\bin" />

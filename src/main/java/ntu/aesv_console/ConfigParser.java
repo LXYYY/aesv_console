@@ -1,7 +1,7 @@
 package ntu.aesv_console;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
+import org.json.JSONObject;
+import org.json.JSONTokener;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -12,21 +12,20 @@ import java.util.Map;
 public class ConfigParser {
     private Map config;
     public ConfigParser(String configFile) {
-        ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
-
-        InputStream resource = null;
+        // parse json file
+        // json file to string
+        JSONObject json=null;
         try {
-            resource = new FileInputStream(configFile);
+            InputStream is = new FileInputStream(configFile);
+            JSONTokener tokener = new JSONTokener(is);
+            json = new JSONObject(tokener);
+            System.out.println(json);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        try {
-            config = mapper.readValue(resource, Map.class);
-        } catch (
-                IOException e) {
-            e.printStackTrace();
-        }
-        System.out.println(config);
+
+        // json to map
+        config = json.toMap();
     }
 
     public Map getConfig() {
