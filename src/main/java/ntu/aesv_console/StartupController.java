@@ -223,11 +223,12 @@ public class StartupController {
 
 
     public void disconnect() {
-        try {
-            SystemUtils.executeCommands(execDir, "StopAll", "disconnect.bat");
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        // consider a global dc script
+//        try {
+//            SystemUtils.executeCommands(execDir, "StopAll", "disconnect.bat");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     public void shutdown() {
