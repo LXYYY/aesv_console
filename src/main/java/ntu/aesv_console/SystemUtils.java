@@ -16,7 +16,8 @@ public class SystemUtils {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
         File logFile = new File("log/" + logPrefix + "-" + dateFormat.format(date) + ".txt"); //Log errors in specified log file.
-        pb.redirectError(logFile);
+//        pb.redirectError(logFile);
+        pb.redirectOutput(logFile);
         process = pb.start();
         System.out.println(logPrefix + ": " + "Process started.");
         return process;

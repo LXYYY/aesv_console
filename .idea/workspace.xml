@@ -9,15 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="update">
+    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stream_receiver.bat" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stream_receiver.bat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/toyotaIP.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/toyotaIP.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/NodeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/NodeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/vehicle_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/vehicle_config.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/VehicleInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ntu/aesv_console/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/SystemUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/SystemUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +31,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitToolBoxStore">
@@ -87,7 +91,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
@@ -107,7 +111,6 @@
   <component name="RunManager">
     <configuration name="console" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ntu.aesv_console.MainApplication" />
       <module name="aesv_console" />
       <method v="2">
@@ -137,6 +140,7 @@
       <workItem from="1654238791463" duration="2802000" />
       <workItem from="1654523986559" duration="41000" />
       <workItem from="1654574875904" duration="8041000" />
+      <workItem from="1657775510763" duration="1565000" />
     </task>
     <task id="LOCAL-00001" summary="change to maven, init commit">
       <created>1654078956553</created>
@@ -184,7 +188,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="platform_pc" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
