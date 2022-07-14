@@ -9,15 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/stream_receiver.bat" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stream_receiver.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/toyotaIP.txt" beforeDir="false" afterPath="$PROJECT_DIR$/bin/toyotaIP.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/vehicle_config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/vehicle_config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/SystemUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/SystemUtils.java" afterDir="false" />
-    </list>
+    <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,11 +41,7 @@
                 <list>
                   <RecentBranch>
                     <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1654153221" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="master" />
-                    <option name="lastUsedInstant" value="1654153220" />
+                    <option name="lastUsedInstant" value="1657778348" />
                   </RecentBranch>
                 </list>
               </option>
