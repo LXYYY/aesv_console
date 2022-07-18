@@ -39,7 +39,6 @@ public class MainApplication extends Application {
         stage.setTitle("Startup Controller");
         stage.setScene(scene);
 //        stage.setFullScreen(true);
-        stage.show();
         System.out.println("Hello World!");
         StartupController controller = fxmlLoader.getController();
         stage.setOnCloseRequest(e -> controller.shutdown());
@@ -55,13 +54,15 @@ public class MainApplication extends Application {
         scene.widthProperty().addListener(sizeListener);
         scene.heightProperty().addListener(sizeListener);
 
-        stage.setX(screenBounds.getMinX());
-        stage.setY(screenBounds.getMinY());
-        stage.setWidth(screenBounds.getWidth());
-        stage.setHeight(screenBounds.getHeight());
+        stage.setX(screenBounds.getMinX()+100);
+        stage.setY(screenBounds.getMinY()+100);
+//        stage.setWidth(screenBounds.getWidth());
+//        stage.setHeight(screenBounds.getHeight());
 
         stage.setFullScreenExitHint("");
-//        stage.setFullScreen(true);
+        stage.setFullScreen(true);
+
+        stage.show();
     }
 
     private static class SceneSizeChangeListener implements ChangeListener<Number> {

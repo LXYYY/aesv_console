@@ -10,8 +10,6 @@ module ntu.aesv_console {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
-    requires com.fasterxml.jackson.databind;
-    requires com.fasterxml.jackson.dataformat.yaml;
     requires org.json;
 
     opens ntu.aesv_console to javafx.fxml;

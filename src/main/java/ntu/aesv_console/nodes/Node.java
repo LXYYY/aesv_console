@@ -2,7 +2,6 @@ package ntu.aesv_console.nodes;
 
 import ntu.aesv_console.SystemUtils;
 import ntu.aesv_console.Vehicle;
-import ntu.aesv_console.messages.MessageParser;
 import ntu.aesv_console.monitors.ProcessMonitor;
 
 import java.io.FileNotFoundException;
@@ -16,9 +15,7 @@ public abstract class Node {
     public final String messageFile;
     private final String name;
     private final ProcessMonitor processMonitor;
-    protected MessageParser msgParser;
     int status;
-    private NodeMonitor monitor;
     private String execDir;
     private Vehicle vehicle;
     private SystemUtils.Logging logger;
@@ -36,7 +33,6 @@ public abstract class Node {
         if (this.processMonitor != null) {
             processMonitor.setProcessName(exeProcessName());
         }
-        msgParser = new MessageParser(messageFile);
         setStatus(Status.UNINITIALIZED);
     }
 
@@ -74,14 +70,7 @@ public abstract class Node {
                 SystemUtils.executeCommands(execDir, name,
                         command);
 
-        SocketHandler.ReceiveCallback receiveCallback = new SocketHandler.ReceiveCallback() {
-            @Override
-            public void onReceive(String message) {
-                MsgReceiveCallback(message);
-            }
-        };
-//        monitor = new NodeMonitor(ip, port, msgParser, receiveCallback, logger, process.getInputStream());
-//        monitor.start();
+
         try {
             sleep(500);
         } catch (InterruptedException e) {
@@ -100,9 +89,7 @@ public abstract class Node {
     public void stop() throws InterruptedException, IOException {
         String[] stopCommand = makeStopCommand();
         SystemUtils.executeCommands(execDir, name, stopCommand);
-        if (monitor != null) {
-            monitor.close();
-        }
+
         if (processMonitor != null) {
             processMonitor.stop();
         }

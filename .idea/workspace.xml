@@ -10,12 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6da9b78-4567-49dd-a23e-d42067e5100f" name="Changes" comment="change to maven, init commit">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/media/desktop.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/aesv_console_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/aesv_console_jar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/monitor.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/bin/monitor.ps1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/StartupController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/monitors/ProcessMonitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/monitors/ProcessMonitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/messages/MessageParser.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/NodeMonitor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ntu/aesv_console/nodes/SocketHandler.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,12 +51,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/json" />
-                    <option name="lastUsedInstant" value="1657778974" />
+                    <option name="branchName" value="develop" />
+                    <option name="lastUsedInstant" value="1657785951" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="develop" />
-                    <option name="lastUsedInstant" value="1657778348" />
+                    <option name="branchName" value="feature/json" />
+                    <option name="lastUsedInstant" value="1657778974" />
                   </RecentBranch>
                 </list>
               </option>
@@ -79,28 +83,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/xiang/IdeaProjects/aesv_console/bin&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.20229885&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/xiang/IdeaProjects/aesv_console/bin",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.20229885",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\xiang\IdeaProjects\aesv_console\bin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\xiang\IdeaProjects\aesv_console" />
       <recent name="C:\Users\xiang\IdeaProjects\aesv_console\src\main\resources\ntu\aesv_console\fx" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -110,6 +116,7 @@
   <component name="RunManager">
     <configuration name="console" type="Application" factoryName="Application">
       <option name="ALTERNATIVE_JRE_PATH" value="openjdk-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="ntu.aesv_console.MainApplication" />
       <module name="aesv_console" />
       <method v="2">
@@ -141,6 +148,7 @@
       <workItem from="1654574875904" duration="8041000" />
       <workItem from="1657775510763" duration="1565000" />
       <workItem from="1657784336154" duration="704000" />
+      <workItem from="1658148799182" duration="1999000" />
     </task>
     <task id="LOCAL-00001" summary="change to maven, init commit">
       <created>1654078956553</created>
